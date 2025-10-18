@@ -46,6 +46,9 @@ export const transactionAPI = {
     api.get(`/api/transactions/byDate?start=${startDate}&end=${endDate}`),
   getByType: (type) =>
     api.get(`/api/transactions/byType?type=${type}`),
+  // New combined filter endpoint
+  getWithFilters: (filters) =>
+    api.get('/api/transactions/filter', { params: filters })
 };
 
 

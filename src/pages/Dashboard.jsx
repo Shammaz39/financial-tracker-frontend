@@ -129,26 +129,27 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
+      {/* Header */}
       <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-gray-900">Finance Tracker</h1>
+              <h1 className="text-xl md:text-2xl font-bold text-gray-900">Finance Tracker</h1>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 md:gap-4">
               <button
                 onClick={() => navigate('/transactions')}
-                className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition-colors shadow-soft"
+                className="flex items-center gap-1 md:gap-2 bg-blue-600 text-white px-3 py-2 rounded-xl hover:bg-blue-700 transition-colors shadow-soft text-xs md:text-sm"
               >
-                <Filter size={20} />
-                Advanced Filters
+                <Filter size={16} />
+                <span className="hidden sm:inline">Filters</span>
               </button>
               <button
                 onClick={logout}
-                className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors"
+                className="flex items-center gap-1 md:gap-2 px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors text-xs md:text-sm"
               >
-                <LogOut size={20} />
-                Logout
+                <LogOut size={16} />
+                <span className="hidden sm:inline">Logout</span>
               </button>
             </div>
           </div>
