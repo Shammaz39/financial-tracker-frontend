@@ -1,0 +1,5 @@
+{
+  "readmeContent": "Finance Tracker is a personal finance management web application designed to help users monitor expenses, track income, and visualize spending patterns for better financial decisions. The backend is securely hosted on Render. On first load, the app may take a few seconds to initialize due to server startup time.",
+  "projectName": "Finance Tracker",
+  "version": "2.0.0"
+}

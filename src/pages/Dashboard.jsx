@@ -28,7 +28,7 @@ const Dashboard = () => {
     amount: '',
     type: 'EXPENSE',
     date: new Date().toISOString().split('T')[0],
-    note: '',
+    title: '',
     categoryName: ''
   });
 
@@ -67,7 +67,7 @@ const Dashboard = () => {
         amount: '',
         type: 'EXPENSE',
         date: new Date().toISOString().split('T')[0],
-        note: '',
+        title: '',
         categoryName: ''
       });
       setShowTransactionForm(false);
@@ -250,7 +250,7 @@ const Dashboard = () => {
                           : transaction.category}
                       </p>
                       <p className="text-sm text-gray-500">
-                        {transaction.note || 'No description'}
+                        {transaction.title || 'No description'}
                       </p>
                       <p className="text-xs text-gray-400">
                         {new Date(transaction.date).toLocaleDateString()}
@@ -339,8 +339,8 @@ const Dashboard = () => {
                   </label>
                   <input
                     type="text"
-                    value={newTransaction.note}
-                    onChange={(e) => setNewTransaction({...newTransaction, note: e.target.value})}
+                    value={newTransaction.title}
+                    onChange={(e) => setNewTransaction({...newTransaction, title: e.target.value})}
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all shadow-soft"
                     placeholder="Optional note"
                   />

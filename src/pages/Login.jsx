@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
-import { DollarSign, Eye, EyeOff } from 'lucide-react';
+import { DollarSign, Eye, EyeOff, Info } from 'lucide-react';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -11,6 +11,8 @@ const Login = () => {
   const [error, setError] = useState('');
   const [isRegister, setIsRegister] = useState(false);
   const [name, setName] = useState('');
+  const [showReadme, setShowReadme] = useState(false);
+  const [readmeContent, setReadmeContent] = useState('');
 
   const { login, register } = useAuth();
   const navigate = useNavigate();
@@ -41,6 +43,23 @@ const Login = () => {
     }
   };
 
+  const handleReadmeClick = async () => {
+    if (showReadme) {
+      setShowReadme(false);
+      return;
+    }
+
+    try {
+      const response = await fetch('/project-info.json');
+      const data = await response.json();
+      setReadmeContent(data.readmeContent);
+      setShowReadme(true);
+    } catch (error) {
+      setReadmeContent('Unable to load project information. This is a personal finance tracker project with backend hosted on Render.');
+      setShowReadme(true);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 flex items-center justify-center p-4">
       <div className="max-w-md w-full bg-white rounded-3xl shadow-soft-xl p-8">
@@ -58,6 +77,22 @@ const Login = () => {
             {isRegister ? 'Create your account' : 'Welcome back to your finances'}
           </p>
         </div>
+
+        {/* Read Me Modal */}
+        {showReadme && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-2xl p-6 max-w-md w-full shadow-soft-xl">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">About This Project</h3>
+              <p className="text-gray-600 mb-6">{readmeContent}</p>
+              <button
+                onClick={() => setShowReadme(false)}
+                className="w-full bg-green-500 text-white py-2 px-4 rounded-xl font-medium hover:bg-green-600 transition-colors"
+              >
+                Got it!
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Error Message */}
         {error && (
@@ -149,6 +184,17 @@ const Login = () => {
             {isRegister
               ? 'Already have an account? Sign in'
               : "Don't have an account? Sign up"}
+          </button>
+        </div>
+
+        {/* Read Me Button */}
+        <div className="text-center mt-4">
+          <button
+            onClick={handleReadmeClick}
+            className="inline-flex items-center text-gray-500 hover:text-gray-700 transition-colors duration-200 text-sm"
+          >
+            <Info size={16} className="mr-1" />
+            Read Me
           </button>
         </div>
       </div>
